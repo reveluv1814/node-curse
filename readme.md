@@ -203,7 +203,7 @@ customEmitter.emmit('x','hola mundo', [1,2,3])
 
 Lee cierta cantidad y no lo descarga en su totalidad
 
-````javascript
+```javascript
 const {createReadStream} = require('fs')
 
 const stream = createReadStream('./data/bigfile.txt','utf-8')
@@ -212,4 +212,41 @@ stream.on('data',(chunk)=>{//existen muchos tpos en data por ejemplo end , etc
     console.log(chunk)//chunk toma una porcion de los datos totales y los lee poco a poco 
 })
 
+```
+### ECMASCRIPT MODULE
+
+Es una nueva manera de importar y exportar modulos usando *import*  en vez de *require*.
+Y en export se usa el default o el indvidual.
+```javascript
+//primera forma
+import math from "./math/index.js"
+console.log(math.add(10,20))
+//segunda forma destructurando
+import {add,subtract} from "./math/index.js"
+console.log(add(10,20))
+
+//exportar
+//primera forma
+export function add(x,y){...}
+//segunda forma
+export default{
+  add,
+  subtract
+}
+
+```
+### FETCH API
+
+Manera de consumir un api.
+```javascript
+  async function loadData1() {
+  try {
+    const res = await fetch("https://rickandmortyapi.com/api/character/");
+    const data = await res.json(); //convierte la respuesta en un json y lo guarda en una variable
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+}
+loadData1();
 ```
